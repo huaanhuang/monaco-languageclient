@@ -13,7 +13,8 @@ export default defineConfig(() => {
                     statemachineClient: path.resolve(__dirname, 'packages/examples/statemachine_client.html'),
                     browser: path.resolve(__dirname, 'packages/examples/browser.html'),
                     react: path.resolve(__dirname, 'packages/examples/react.html'),
-                    python: path.resolve(__dirname, 'packages/examples/python.html')
+                    python: path.resolve(__dirname, 'packages/examples/python.html'),
+                    golang: path.resolve(__dirname, 'packages/examples/golang.html')
                 }
             }
         },

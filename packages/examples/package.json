@@ -112,6 +112,7 @@
     "build": "npm run build:msg && npm run clean && npm run compile && npm run build:worker:statemachine",
     "start:server:json": "node --loader ts-node/esm src/json/server/direct.ts",
     "start:server:python": "node --loader ts-node/esm src/python/server/direct.ts",
-    "start:server:groovy": "node --watch --loader  ts-node/esm src/groovy/server/direct.ts"
+    "start:server:groovy": "node --watch --loader  ts-node/esm src/groovy/server/direct.ts",
+    "start:server:golang": "node --watch --loader  ts-node/esm src/golang/server/direct.ts"
   }
 }
