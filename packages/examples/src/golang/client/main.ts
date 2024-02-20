@@ -144,18 +144,24 @@ export const startGolangClient = async () => {
     // use the file create before
     const modelRef = await createModelReference(monaco.Uri.file('/Users/huangdingbo/data/editor/model.go'));
     modelRef.object.setLanguageId(languageId);
-
     // create monaco editor
-    createConfiguredEditor(document.getElementById('container')!, {
+    const editor = createConfiguredEditor(document.getElementById('container')!, {
         model: modelRef.object.textEditorModel,
         automaticLayout: true
     });
+    // 设置内容
+    // editor.setValue('package bar');
+    // 假设 editor 是一个 IStandaloneCodeEditor 实例
+    editor.onDidChangeModelContent((event) => {
+        // 处理内容变化
+        console.log('编辑器内容发生变化', editor.getValue());
+    });
 
     // create the web socket and configure to start the language client on open, can add extra parameters to the url if needed.
-    createWebSocket(createUrl('localhost', 30005, '/golang', {
+    createWebSocket(createUrl('language.huaanhuang.com', 443, '/golang', {
         // Used to parse an auth token or additional parameters such as import IDs to the language server
         authorization: 'UserAuth'
         // By commenting above line out and commenting below line in, connection to language server will be denied.
         // authorization: 'FailedUserAuth'
-    }, false));
+    }, true));
 };

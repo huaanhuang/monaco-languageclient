@@ -4,13 +4,18 @@
  * ------------------------------------------------------------------------------------------ */
 
 import {runLanguageServer} from '../../common/language-server-runner.js';
+import {golangConfig} from '../config.js';
 
 export const runGolangLanguageServer = (baseDir: string, relativeDir: string) => {
     console.debug(baseDir, relativeDir);
+    // 设置环境变量
+    const env = Object.assign({}, process.env, {
+        GOPLS_WORKSPACE: golangConfig.workspace,
+    });
     runLanguageServer({
         serverName: 'GOLANG',
-        pathName: '/golang',
-        serverPort: 30005,
+        pathName: golangConfig.path,
+        serverPort: golangConfig.port,
         runCommand: 'gopls',
         runCommandArgs: [
             '-mode',
@@ -19,6 +24,7 @@ export const runGolangLanguageServer = (baseDir: string, relativeDir: string) =>
         wsServerOptions: {
             noServer: true,
             perMessageDeflate: false
-        }
+        },
+        spawnOptions: {env}
     });
 };
